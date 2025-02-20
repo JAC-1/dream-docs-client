@@ -35,7 +35,7 @@ export default function CryptoClient({
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const uploadFileRef = useRef();
+  const uploadFileRef = useRef<HTMLInputElement | null>(null);
 
   const { userId } = useAuth();
 
