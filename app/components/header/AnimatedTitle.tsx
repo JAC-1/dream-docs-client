@@ -42,7 +42,9 @@ const AnimatedTitle = () => {
         {title_split.map((letter, index) => (
           <span
             key={index}
-            ref={(el) => (letterRefs.current[index] = el as HTMLSpanElement)}
+            ref={(el) => {
+              letterRefs.current[index] = el as HTMLSpanElement;
+            }}
             className={letter === ' ' ? 'w-2 tracking-wide' : 'tracking-wide'}
           >
             {letter}

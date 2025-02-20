@@ -87,8 +87,6 @@ export default function SignIn() {
     } catch (err) {
       if (isClerkAPIResponseError(err)) {
         setErrors(err.errors);
-      } else {
-        setErrors(['An unexpected error occurred']);
       }
     } finally {
       setIsSubmitting(false);

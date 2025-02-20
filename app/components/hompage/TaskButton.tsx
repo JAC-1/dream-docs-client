@@ -2,14 +2,13 @@ import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { LucideIcon, BadgeCheck, CircleAlert, Circle } from 'lucide-react';
 import { TASK_TYPES } from '@/constants/taskTypes';
-import prisma from '@/lib/prisma';
 
 export interface TaskButtonProps {
   href: string;
   icon: LucideIcon;
   text: string;
   delay?: number;
-  taskStatus: typeof prisma.file_cache.; 
+  taskStatus: 'new' | 'pending' | 'approved' | 'declined' | 'declined';
 }
 
 export default function TaskButton({
