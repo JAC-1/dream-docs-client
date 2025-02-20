@@ -1,0 +1,90 @@
+import { NextResponse } from 'next/server';
+import { encryptWithPublic } from '@/lib/encryptWithPublic';
+import { EncryptRequest } from '@/interfaces';
+import { v4 as uuidv4 } from 'uuid';
+import supabase from '@/lib/supabase/supabase_admin';
+import { Tables, TablesInsert } from '@/database.types';
+import {
+  insertDocumentCache,
+  insertDocumentKey,
+} from '@/lib/supabase/opperations';
+import { uploadDocToTurso } from '@/lib/turso/opperations';
+
+export async function POST(request: Request) {
+  try {
+    const {
+      userId,
+      encryptedFile,
+      documentKey,
+      documentCache,
+    }: EncryptRequest = await request.json();
+    // console.log('Document ID: ', documentCache.document_id);
+
+    if (!encryptedFile || !documentKey || !documentCache) {
+      return NextResponse.json({
+        status: 400,
+        statusText: 'Missing required data',
+      });
+    }
+
+    const encryptedSymmetricKey = await encryptWithPublic(documentKey);
+    // console.log(documentKey); // TODO: Delete after testing
+
+    const keyPayload: TablesInsert<'file_keys'> = {
+      id: uuidv4(),
+      document_id: documentCache.document_id!,
+      encrypted_key: encryptedSymmetricKey,
+      status: 'active',
+      created_at: new Date().toISOString(),
+    };
+
+    try {
+      const insertFileDetails = await uploadDocToTurso(
+        encryptedFile,
+        documentCache.document_id!
+      );
+      if (!insertFileDetails) {
+        console.error('Turso Upload Error: Failed to insert file');
+        throw new Error('Failed to insert file');
+      }
+
+      const documentCacheResponse = await insertDocumentCache(documentCache);
+      if (!documentCacheResponse) {
+        console.error('Cache Error: Failed to insert document cache');
+        throw new Error('Failed to insert document cache');
+      }
+
+      const keyResponse = await insertDocumentKey(
+        keyPayload,
+        documentCacheResponse[0].document_id
+      );
+      if (!keyResponse) {
+        console.error('Key Error: Failed to insert document key');
+        throw new Error('Failed to insert document key');
+      }
+
+      return NextResponse.json({ status: 200 });
+    } catch (error: any) {
+      console.error('Operation Error:', {
+        message: error.message,
+        stack: error.stack,
+        cause: error.cause,
+      });
+      return NextResponse.json(
+        { error: 'There was a problem uploading your document' },
+        { status: 500 }
+      );
+    }
+  } catch (error) {
+    console.error('Request Error:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    return NextResponse.json(
+      { error: 'There was an error processing your request.' },
+      {
+        status: 500,
+      }
+    );
+  }
+}

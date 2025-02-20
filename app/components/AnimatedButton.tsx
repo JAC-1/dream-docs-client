@@ -1,0 +1,45 @@
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { LucideIcon } from "lucide-react";
+
+interface AnimatedButtonProps {
+  href: string;
+  icon?: LucideIcon;
+  text: string;
+  ariaLabel: string;
+  delay?: number;
+  buttonVariant?: "default" | "outline" | "secondary" | "ghost" | "link";
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+const AnimatedButton: React.FC<AnimatedButtonProps> = ({
+  href ,
+  icon: Icon,
+  text,
+  ariaLabel,
+  delay = 0,
+  buttonVariant = "default",
+  onClick,
+  disabled,
+}) => {
+  return (
+    <div
+      className={`relative animate-fadeInUp opacity-0 `}
+      style={{ animationDelay: `${delay}s` }}
+    >
+      <Link
+        className={`${buttonVariants({ variant: buttonVariant })} w-full py-6 ${
+          disabled ? "opacity-50 cursor-not-allowed" : ""} `}
+        href={href}
+        aria-label={ariaLabel}
+        onClick={onClick}
+      >
+        { Icon ? (<Icon className="w-5 h-5 mr-1" />) : null}
+        <span className="text-sm">{text}</span>
+      </Link>
+    </div>
+  );
+};
+
+export default AnimatedButton;
