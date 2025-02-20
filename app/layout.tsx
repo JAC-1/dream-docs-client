@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ClerkProvider, SignedIn } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Header from '@/app/components/header/Header';
 import Footer from './components/footer/Footer';
@@ -30,6 +31,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
