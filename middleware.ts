@@ -23,28 +23,6 @@ export default clerkMiddleware((auth, req) => {
   }
 });
 
-// Protected routes based on the user's authentication status and the route they are trying to access
-// export default clerkMiddleware((auth, req) => {
-//   if (!auth().userId && isProtectedRoute(req)) {
-//     // Add custom logic to run before redirecting
-
-//     return auth().redirectToSignIn();
-//   }
-// });
-//
-
-// Protect routes based on user's roles
-// export default clerkMiddleware((auth, req) => {
-//     if (isProtectedRoute(req)) {
-//         auth().protect((has) => {
-//       return (
-//         has({ permission: "org:sys_memberships:manage" }) ||
-//         has({ permission: "org:sys_domains_manage" }),
-//       );
-//     });
-//   }
-// });
-
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
@@ -55,4 +33,3 @@ export const config = {
   ],
 };
 
-const x = 5;
