@@ -9,10 +9,17 @@ const isProtectedRoute = createRouteMatcher([
 
 // Protects the dashboard route
 export default clerkMiddleware((auth, req) => {
+  // Redirect if not authed correctly
   const userId = auth().userId;
+  const homeURL = new URL('/', req.url);
   if (!userId && isProtectedRoute(req)) {
-    const signInURL = new URL('/', req.url);
-    return NextResponse.redirect(signInURL);
+    return NextResponse.redirect(homeURL);
+  }
+
+  // If user goes to sign-in page whiled signed in, redirect to dashboard
+  const currentURL = new URL(req.url);
+  if (userId && currentURL.pathname === '/sign-in') {
+    return NextResponse.redirect(homeURL);
   }
 });
 
