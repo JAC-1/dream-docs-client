@@ -156,7 +156,7 @@ export default function SignIn() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <AnimatedText
-                text="メールアドレスを確認してください。"
+                text="メールアドレスを入力してください。"
                 className=" text-sm font-bold"
                 delay={0.7}
               />

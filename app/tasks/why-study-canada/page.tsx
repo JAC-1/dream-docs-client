@@ -1,20 +1,16 @@
-import SubmissionPage from "@/app/components/submissionPage/SubmissionPage";
-
+import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 
 const WhyStudyInCanada: React.FC = () => {
   return (
-
     <SubmissionPage
-      title="カナダ留学理由"
+      title="志願理由書"
       task_label="Why_Study_In_Canada"
       description={[
-        "カナダで勉強したい理由について説明する手紙を作成させていただきます。",
-        "テンプレートまたは授業で話し合った配布資料を使用してください。",
+        'カナダで勉強したい理由について説明してください。',
+        '授業でテンプレートを配布するので参考にして書いてください',
       ]}
     />
   );
-
 };
 
 export default WhyStudyInCanada;
-

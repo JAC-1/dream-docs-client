@@ -42,3 +42,6 @@ certificates/*
 
 # Idea
 .idea/
+
+# Gen Information
+Gen.md

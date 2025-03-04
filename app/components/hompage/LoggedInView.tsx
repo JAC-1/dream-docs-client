@@ -25,7 +25,7 @@ const LoggedInView = async () => {
   return (
     <div className="text-center w-full container mt-24">
       <AnimatedText
-        text="タスク・リスト"
+        text="提出リスト"
         element="h1"
         delay={0.2}
         className="md:text-6xl text-3xl p-5"
@@ -56,7 +56,7 @@ const LoggedInView = async () => {
         <TaskButton
           href="/tasks/why-study-canada"
           icon={Mail}
-          text="カナダ留学の理由"
+          text="志願理由書"
           delay={0.8}
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.WHY_STUDY_IN_CANADA) : 'new'
@@ -65,7 +65,7 @@ const LoggedInView = async () => {
         <TaskButton
           href="/tasks/homestay-letter"
           icon={Mail}
-          text="ホストファミリーの手紙"
+          text="ホストファミリーへの手紙"
           delay={0.8}
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.HOMESTAY_LETTER) : 'new'
@@ -74,7 +74,7 @@ const LoggedInView = async () => {
         <TaskButton
           href="/tasks/passport"
           icon={TicketsPlane}
-          text="パスワード"
+          text="パスポートのカラーコピー"
           delay={0.8}
           taskStatus={tasksMap ? getTaskStatus(TASK_TYPES.PASSPORT) : 'new'}
         />
@@ -85,7 +85,7 @@ const LoggedInView = async () => {
           delay={0.8}
           taskStatus={tasksMap ? getTaskStatus(TASK_TYPES.HEADSHOT) : 'new'}
         />
-        <TaskButton
+        {/* <TaskButton
           href="/tasks/study-abroad-application"
           icon={Signature}
           text="留学申請書"
@@ -95,7 +95,7 @@ const LoggedInView = async () => {
               ? getTaskStatus(TASK_TYPES.STUDY_ABROAD_APPLICATION)
               : 'new'
           }
-        />
+        /> */}
         <TaskButton
           href="/tasks/immunization-record"
           icon={Cross}
