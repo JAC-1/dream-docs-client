@@ -188,7 +188,13 @@ export default function CryptoClient({
               <AnimatedButton
                 href="#"
                 icon={File}
-                text={isProcessing ? '処理中です...' : 'アップロード'}
+                text={
+                  isProcessing
+                    ? '修理中'
+                    : (fileDetails?.file_name &&
+                        `${fileDetails?.file_name}を選択しています`) ||
+                      'ファイルを選択'
+                }
                 ariaLabel="Upload File"
                 onClick={initiateUpload}
                 buttonVariant="outline"
