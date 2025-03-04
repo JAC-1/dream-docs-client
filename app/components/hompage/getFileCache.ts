@@ -3,8 +3,7 @@ import supabase from '@/lib/supabase/supabase_annon';
 
 const getTasks = async () => {
   const { userId } = auth();
-  if (!userId)
-    throw 'Unable to get task status information. User most likely not authenticated properly.';
+  if (!userId) throw 'Possibly Unauthorized';
   try {
     const { data: user_file_cache, error } = await supabase
       .from('file_cache')

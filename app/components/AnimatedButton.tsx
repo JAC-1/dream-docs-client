@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
-import { LucideIcon } from "lucide-react";
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { LucideIcon } from 'lucide-react';
 
 interface AnimatedButtonProps {
   href: string;
@@ -8,18 +8,18 @@ interface AnimatedButtonProps {
   text: string;
   ariaLabel: string;
   delay?: number;
-  buttonVariant?: "default" | "outline" | "secondary" | "ghost" | "link";
+  buttonVariant?: 'default' | 'outline' | 'secondary' | 'ghost' | 'link';
   onClick?: () => void;
   disabled?: boolean;
 }
 
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({
-  href ,
+  href,
   icon: Icon,
   text,
   ariaLabel,
   delay = 0,
-  buttonVariant = "default",
+  buttonVariant = 'default',
   onClick,
   disabled,
 }) => {
@@ -28,14 +28,19 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       className={`relative animate-fadeInUp opacity-0 `}
       style={{ animationDelay: `${delay}s` }}
     >
+      {/*TODO: Actually disable the button if disabled*/}
+
       <Link
         className={`${buttonVariants({ variant: buttonVariant })} w-full py-6 ${
-          disabled ? "opacity-50 cursor-not-allowed" : ""} `}
+          disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
+        } `}
         href={href}
         aria-label={ariaLabel}
+        aready-disabled={disabled}
+        tabIndex={disabled ? -1 : 0}
         onClick={onClick}
       >
-        { Icon ? (<Icon className="w-5 h-5 mr-1" />) : null}
+        {Icon ? <Icon className="w-5 h-5 mr-1" /> : null}
         <span className="text-sm">{text}</span>
       </Link>
     </div>

@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import Link from 'next/link';
 
 const AnimatedTitle = () => {
-  const letterRefs = useRef<HTMLSpanElement[]>([]);
+  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const title_split = 'Dream Docks'.split('');
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const AnimatedTitle = () => {
           <span
             key={index}
             ref={(el) => {
-              letterRefs.current[index] = el as HTMLSpanElement;
+              letterRefs.current[index] = el;
             }}
             className={letter === ' ' ? 'w-2 tracking-wide' : 'tracking-wide'}
           >

@@ -9,7 +9,7 @@ const PersonalInformationWaiver: React.FC = () => {
         'この同意書は海外渡航時にあなたの個人情報の一部をPaliserが利用することを許可するものです。',
         '保護者の署名が必要な点に注意ください。',
       ]}
-      downloadUrl="/api/documents/personal-information-waiver"
+      // downloadUrl="/api/documents/personal-information-waiver"
     />
   );
 };

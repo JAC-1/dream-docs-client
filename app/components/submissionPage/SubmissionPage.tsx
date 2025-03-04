@@ -4,7 +4,7 @@ import { generateSymmetricKey, encryptFile } from '@/utils/crypto_utils';
 import { useState, useCallback, useRef } from 'react';
 import { EncryptRequest } from '@/interfaces';
 import AnimatedTextTailwind from '../AnimatedTextTailwind';
-import { Download, UploadIcon } from 'lucide-react';
+import { Download, UploadIcon, File } from 'lucide-react';
 import { SecureUploadProps } from '@/interfaces/secure-upload';
 import AnimatedButton from '../AnimatedButton';
 import { useAuth } from '@clerk/nextjs';
@@ -100,7 +100,7 @@ export default function CryptoClient({
   const sendToServer = useCallback(() => {
     if (!base64EncryptedFile || !symmetricKeyBase64 || !fileDetails) {
       setError(
-        '必要なデータが不足しています。ファイルを選択してもう一度お試しください。'
+        'ファイルが不足しています。ファイルを選択してもう一度お試しください。'
       );
       return;
     }
@@ -187,7 +187,7 @@ export default function CryptoClient({
             >
               <AnimatedButton
                 href="#"
-                icon={UploadIcon}
+                icon={File}
                 text={isProcessing ? '処理中です...' : 'アップロード'}
                 ariaLabel="Upload File"
                 onClick={initiateUpload}
@@ -206,6 +206,7 @@ export default function CryptoClient({
               />
             </div>
           </div>
+          {/* TODO: How and where do we add a cancel button to clear? */}
 
           {error && (
             <p className="mt-4 text-red-500" role="alert">
