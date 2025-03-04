@@ -7,17 +7,14 @@ const getTasks = async () => {
   try {
     const { data: user_file_cache, error } = await supabase
       .from('file_cache')
-      .select('*')
+      .select('task_type, status')
       .eq('user_id', userId);
     if (error) throw error;
-    const taskStatusMap = user_file_cache.reduce(
-      (acc, task) => ({
-        ...acc,
-        [task.task_type]: task.status,
-      }),
-      {} as Record<string, string>
+    if (!user_file_cache || user_file_cache.length === 0) return {}; // Handle empty response
+    const taskStatusMap = new Map(
+      user_file_cache.map((task) => [task.task_type, task.status])
     );
-    return taskStatusMap;
+    return Object.fromEntries(taskStatusMap);
   } catch (error) {
     console.error('Error fetching task from database: ', error);
     return error;

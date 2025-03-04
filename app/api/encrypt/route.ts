@@ -12,13 +12,8 @@ import { uploadDocToTurso } from '@/lib/turso/opperations';
 
 export async function POST(request: Request) {
   try {
-    const {
-      userId,
-      encryptedFile,
-      documentKey,
-      documentCache,
-    }: EncryptRequest = await request.json();
-    // console.log('Document ID: ', documentCache.document_id);
+    const { encryptedFile, documentKey, documentCache }: EncryptRequest =
+      await request.json();
 
     if (!encryptedFile || !documentKey || !documentCache) {
       return NextResponse.json({
@@ -28,7 +23,6 @@ export async function POST(request: Request) {
     }
 
     const encryptedSymmetricKey = await encryptWithPublic(documentKey);
-    // console.log(documentKey); // TODO: Delete after testing
 
     const keyPayload: TablesInsert<'file_keys'> = {
       id: uuidv4(),
@@ -56,7 +50,7 @@ export async function POST(request: Request) {
 
       const keyResponse = await insertDocumentKey(
         keyPayload,
-        documentCacheResponse[0].document_id
+        documentCache.document_id!
       );
       if (!keyResponse) {
         console.error('Key Error: Failed to insert document key');

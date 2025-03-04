@@ -6,16 +6,14 @@ export const insertDocumentCache = async (
 ) => {
   try {
     const payloadWithFilePath = { ...payload };
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('file_cache')
-      .insert([payloadWithFilePath])
-      .select();
+      .insert([payloadWithFilePath]);
     if (error) {
       console.error(error);
       throw error;
     }
-    console.log(data);
-    return data;
+    return true;
   } catch (error) {
     console.error(error);
     throw error;
@@ -27,7 +25,7 @@ export const insertDocumentKey = async (
 ) => {
   try {
     const payloadWithDocumentId = { ...payload, document_id: documentId };
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('file_keys')
       .insert([payloadWithDocumentId]);
     if (error) {
