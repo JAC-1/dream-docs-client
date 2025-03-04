@@ -1,14 +1,11 @@
-import { SignedIn, SignedOut } from "@clerk/nextjs";
-import LoggedInView from "./LoggedInView";
-import LoggedOutView from "./LoggedOutView";
-import AnimatedText from "../AnimatedText";
-
-
-
+import { SignedIn, SignedOut } from '@clerk/nextjs';
+import LoggedInView from './LoggedInView';
+import LoggedOutView from './LoggedOutView';
+import AnimatedText from '../AnimatedText';
 
 export default function WelcomeScreen() {
   return (
-    <div className="space-y-6 w-full flex flex-col items-center overflow-y-scroll ">
+    <div className="space-y-6 w-full flex flex-col items-center">
       <SignedIn>
         <LoggedInView />
       </SignedIn>

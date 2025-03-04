@@ -5,7 +5,7 @@ import {
   LucideIcon,
   BadgeCheck,
   CircleAlert,
-  LoaderPinwheel
+  LoaderPinwheel,
   Circle,
 } from 'lucide-react';
 import { TASK_TYPES } from '@/constants/taskTypes';
@@ -46,23 +46,25 @@ export default function TaskButton({
 
   const { color, bgColor, icon: StatusIcon } = statusConfig[taskStatus];
 
-  const defaultStyle = "block w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out";
-  const disabledStyle = "block w-full bg-gray-50 px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg text-gray-400 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out";
-  const disabled = false
-
+  const defaultStyle =
+    'block w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out';
+  const disabledStyle =
+    'block w-full bg-gray-50 px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg text-gray-400 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out';
+  const disabled = false;
 
   return (
     <div
       className="relative md:w-full w-4/5 opacity-0 animate-fadeIn "
       style={{ animationDelay: `${delay}s` }}
     >
-      <Link
-        className={disabled ? disabledStyle : defaultStyle}
-        href={href}
-      >
+      <Link className={disabled ? disabledStyle : defaultStyle} href={href}>
         <div className="flex items-center justify-between w-full">
-          <Icon className={`w-6 h-6 sm:w-8 sm:h-8 ${disabled ? "text-gray-400": "text-gray-600"}`} />
-          <span className={`text-md sm:text-lg md:text-xl font-medium ${disabled ? "text-gray-400": "text-gray-800"}`}>
+          <Icon
+            className={`w-6 h-6 sm:w-8 sm:h-8 ${disabled ? 'text-gray-400' : 'text-gray-600'}`}
+          />
+          <span
+            className={`text-md sm:text-lg md:text-xl font-medium ${disabled ? 'text-gray-400' : 'text-gray-800'}`}
+          >
             {text}
           </span>
           <div className={`p-2 rounded-full ${bgColor}`}>
