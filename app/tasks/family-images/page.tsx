@@ -1,6 +1,11 @@
 import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
+import getFileCache from '@/app/components/hompage/getFileCache';
+import { TASK_TYPES } from '@/constants/taskTypes';
 
-const FamilyImages: React.FC = () => {
+const FamilyImages: React.FC = async () => {
+  const tasksMap = await getFileCache();
+  const taskStatus = (taskType: string) => tasksMap[taskType];
+
   return (
     <SubmissionPage
       title="家族写真"
@@ -9,6 +14,9 @@ const FamilyImages: React.FC = () => {
         '最低3枚、ご自身の家族写真をアップロードしてください。',
         'これらの写真はホームステイ先のご家族とのマッチングに使用され、ご自身がどのような人物であるかを紹介するためのものです。',
       ]}
+      task_aproved={
+        taskStatus(TASK_TYPES.FAMILY_IMAGES) === 'approved' ? true : false
+      }
     />
   );
 };

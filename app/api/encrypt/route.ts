@@ -2,8 +2,7 @@ import { NextResponse } from 'next/server';
 import { encryptWithPublic } from '@/lib/encryptWithPublic';
 import { EncryptRequest } from '@/interfaces';
 import { v4 as uuidv4 } from 'uuid';
-import supabase from '@/lib/supabase/supabase_admin';
-import { Tables, TablesInsert } from '@/database.types';
+import { TablesInsert } from '@/database.types';
 import {
   insertDocumentCache,
   insertDocumentKey,

@@ -15,6 +15,7 @@ export default function CryptoClient({
   task_label,
   description,
   downloadUrl,
+  task_aproved,
 }: SecureUploadProps) {
   const initiateUpload = () => {
     if (!uploadFileRef.current) return;
@@ -142,7 +143,7 @@ export default function CryptoClient({
   }, [base64EncryptedFile, symmetricKeyBase64, fileDetails]);
 
   return (
-    <div className="h-auto  mt-28">
+    <div className="h-auto mt-28">
       <div className="p-5 m-3 border-none shadow-none">
         <div className="py-5">
           <AnimatedTextTailwind
@@ -162,57 +163,67 @@ export default function CryptoClient({
             />
           ))}
 
-          <div className="grid grid-cols-3 grid-rows-2 gap-4 my-10">
-            {downloadUrl && (
-              <div className="col-span-1 row-span-1">
+          {task_aproved ? (
+            <div className="my-10">
+              <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+                <p className="text-green-700 font-medium text-center">
+                  このタスクはすでに完了しています。新しいアップロードは必要ありません。
+                </p>
+              </div>
+            </div>
+          ) : (
+            // Original upload functionality for non-approved tasks
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 my-10">
+              {downloadUrl && (
+                <div className="col-span-1 row-span-1">
+                  <AnimatedButton
+                    icon={Download}
+                    href={downloadUrl}
+                    ariaLabel="Download Document"
+                    delay={1.5}
+                    buttonVariant="ghost"
+                    text=""
+                  />
+                </div>
+              )}
+              <input
+                ref={uploadFileRef}
+                type="file"
+                className="hidden"
+                id="uploadFile"
+                onChange={handleFileChange}
+              />
+              <div
+                className={`${downloadUrl ? 'col-span-2 row-span-1' : 'col-span-3 row-span-1'}`}
+              >
                 <AnimatedButton
-                  icon={Download}
-                  href={downloadUrl}
-                  ariaLabel="Download Document"
-                  delay={1.5}
-                  buttonVariant="ghost"
-                  text=""
+                  href="#"
+                  icon={File}
+                  text={
+                    isProcessing
+                      ? '修理中'
+                      : (fileDetails?.file_name &&
+                          `${fileDetails?.file_name}を選択しています`) ||
+                        'ファイルを選択'
+                  }
+                  ariaLabel="Upload File"
+                  onClick={initiateUpload}
+                  buttonVariant="outline"
                 />
               </div>
-            )}
-            <input
-              ref={uploadFileRef}
-              type="file"
-              className="hidden"
-              id="uploadFile"
-              onChange={handleFileChange}
-            />
-            <div
-              className={`${downloadUrl ? 'col-span-2 row-span-1' : 'col-span-3 row-span-1'}`}
-            >
-              <AnimatedButton
-                href="#"
-                icon={File}
-                text={
-                  isProcessing
-                    ? '修理中'
-                    : (fileDetails?.file_name &&
-                        `${fileDetails?.file_name}を選択しています`) ||
-                      'ファイルを選択'
-                }
-                ariaLabel="Upload File"
-                onClick={initiateUpload}
-                buttonVariant="outline"
-              />
+              <div className="col-span-3 row-span-2">
+                <AnimatedButton
+                  href="#"
+                  icon={UploadIcon}
+                  text={isProcessing ? '処理中です...' : '送信'}
+                  ariaLabel="Submit File Upload"
+                  delay={1.8}
+                  onClick={sendToServer}
+                  disabled={!fileDetails || isProcessing}
+                />
+              </div>
             </div>
-            <div className="col-span-3 row-span-2">
-              <AnimatedButton
-                href="#"
-                icon={UploadIcon}
-                text={isProcessing ? '処理中です...' : '送信'}
-                ariaLabel="Submit File Upload"
-                delay={1.8}
-                onClick={sendToServer}
-                disabled={!fileDetails || isProcessing}
-              />
-            </div>
-          </div>
-          {/* TODO: How and where do we add a cancel button to clear? */}
+          )}
 
           {error && (
             <p className="mt-4 text-red-500" role="alert">

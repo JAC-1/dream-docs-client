@@ -17,10 +17,8 @@ const LoggedInView = async () => {
   if (tasksMap.message) {
     throw new Error('Error fetching file_cache', tasksMap);
   }
-  // console.log(tasksMap);
 
   const getTaskStatus = (taskType: string) => tasksMap[taskType] || 'new';
-  // console.log(getTaskStatus(TASK_TYPES.PERSONAL_INFORMATION_WAIVER));
 
   return (
     <div className="text-center w-full container mt-24">
@@ -40,17 +38,27 @@ const LoggedInView = async () => {
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.STUDY_ABROAD_AGREEMENT) : 'new'
           }
+          disabled={
+            tasksMap
+              ? getTaskStatus(TASK_TYPES.STUDY_ABROAD_AGREEMENT) === 'approved'
+              : false
+          }
         />
         <TaskButton
           href="/tasks/personal-information-waiver"
           icon={FileUser}
-          // text="Personal jInformation Waiver"
           text="個人情報同意書"
           delay={0.4}
           taskStatus={
             tasksMap
               ? getTaskStatus(TASK_TYPES.PERSONAL_INFORMATION_WAIVER)
               : 'new'
+          }
+          disabled={
+            tasksMap
+              ? getTaskStatus(TASK_TYPES.PERSONAL_INFORMATION_WAIVER) ===
+                'approved'
+              : false
           }
         />
         <TaskButton
@@ -61,6 +69,11 @@ const LoggedInView = async () => {
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.WHY_STUDY_IN_CANADA) : 'new'
           }
+          disabled={
+            tasksMap
+              ? getTaskStatus(TASK_TYPES.WHY_STUDY_IN_CANADA) === 'approved'
+              : false
+          }
         />
         <TaskButton
           href="/tasks/homestay-letter"
@@ -70,6 +83,11 @@ const LoggedInView = async () => {
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.HOMESTAY_LETTER) : 'new'
           }
+          disabled={
+            tasksMap
+              ? getTaskStatus(TASK_TYPES.HOMESTAY_LETTER) === 'approved'
+              : false
+          }
         />
         <TaskButton
           href="/tasks/passport"
@@ -77,6 +95,9 @@ const LoggedInView = async () => {
           text="パスポートのカラーコピー"
           delay={0.8}
           taskStatus={tasksMap ? getTaskStatus(TASK_TYPES.PASSPORT) : 'new'}
+          disabled={
+            tasksMap ? getTaskStatus(TASK_TYPES.PASSPORT) === 'approved' : false
+          }
         />
         <TaskButton
           href="/tasks/headshot"
@@ -84,6 +105,9 @@ const LoggedInView = async () => {
           text="証明写真"
           delay={0.8}
           taskStatus={tasksMap ? getTaskStatus(TASK_TYPES.HEADSHOT) : 'new'}
+          disabled={
+            tasksMap ? getTaskStatus(TASK_TYPES.HEADSHOT) === 'approved' : false
+          }
         />
         {/* <TaskButton
           href="/tasks/study-abroad-application"
@@ -104,6 +128,11 @@ const LoggedInView = async () => {
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.IMMUNIZATION_RECORD) : 'new'
           }
+          disabled={
+            tasksMap
+              ? getTaskStatus(TASK_TYPES.IMMUNIZATION_RECORD) === 'approved'
+              : false
+          }
         />
         <TaskButton
           href="/tasks/family-images"
@@ -112,6 +141,11 @@ const LoggedInView = async () => {
           delay={0.8}
           taskStatus={
             tasksMap ? getTaskStatus(TASK_TYPES.FAMILY_IMAGES) : 'new'
+          }
+          disabled={
+            tasksMap
+              ? getTaskStatus(TASK_TYPES.FAMILY_IMAGES) === 'approved'
+              : false
           }
         />
       </div>
