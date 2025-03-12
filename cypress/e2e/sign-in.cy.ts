@@ -1,49 +1,11 @@
-// TODO: Update for Japanese if wishing to test
-// it('sign in and verify task items', () => {
-//   cy.visit(`/`)
-//   cy.clerkSignIn({ strategy: 'email_code', identifier: 'justin+clerk_test@example.com' })
-//   cy.visit('/')
-//   cy.get('h1').should('contain', 'Task List')
-//   cy.get('h1').should('be.visible')
+import { loginToTestClerk, taskList } from './test-values';
 
-// const tasks = [
-//   {
-//     name: 'Study Abroad Waiver',
-//     href: '/study-abroad-waiver'
-//   },
-//   {
-//     name: 'Personal Information Waiver',
-//     href: '/personal-information-waiver'
-//   },
-//   {
-//     name: 'Why I Study In Canada',
-//     href: '/why-study-canada'
-//   },
-//   {
-//     name: 'Letter to Homestay Family',
-//     href: '/homestay-letter'
-//   },
-//   {
-//     name: 'Passport',
-//     href: '/passport'
-//   },
-//   {
-//     name: 'Headshot',
-//     href: '/headshot'
-//   },
-//   {
-//     name: 'Study Abroad Application',
-//     href: '/study-abroad-application'
-//   },
-//   {
-//     name: 'Immunization Record',
-//     href: '/immunization-record'
-//   }
-// ];
+it('sign in and verrify items', () => {
+  loginToTestClerk('justin+clerk_test@example.com');
 
-// tasks.forEach(task => {
-//   cy.get(`a[href="${task.href}"]`)
-//     .find('span')
-//     .should('contain', task.name)
-// })
-// })
+  cy.get('h1').should('contain', '提出リスト').should('be.visible');
+
+  taskList.forEach(({ text, href }) => {
+    cy.contains(text).should('be.visible').and('have.attr', 'href', href);
+  });
+});

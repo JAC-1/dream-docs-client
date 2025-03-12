@@ -39,7 +39,16 @@ export default function Component() {
                       variant="ghost"
                       className="w-full justify-start p-0"
                     >
-                      <Link href="/">タスクリスト</Link>
+                      <Link href="/">提出リスト</Link>
+                    </Button>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Button
+                      asChild
+                      variant="ghost"
+                      className="w-full justify-start p-0"
+                    >
+                      <Link href="/info">内容</Link>
                     </Button>
                   </DropdownMenuItem>
                   {/*Add when contact page is ready*/}
@@ -49,7 +58,12 @@ export default function Component() {
                       variant="ghost"
                       className="w-full justify-start p-0"
                     >
-                      <Link href="" className="text-gray-300 hover:text-gray-300 pointer-events-none">コンタクト</Link>
+                      <Link
+                        href=""
+                        className="text-gray-300 hover:text-gray-300 pointer-events-none"
+                      >
+                        コンタクト
+                      </Link>
                     </Button>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />

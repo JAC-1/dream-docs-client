@@ -45,3 +45,6 @@ certificates/*
 
 # Gen Information
 Gen.md
+
+# Test upload file for Cypress
+test.txt

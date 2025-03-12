@@ -64,7 +64,10 @@ export async function POST(request: Request) {
         cause: error.cause,
       });
       return NextResponse.json(
-        { error: 'There was a problem uploading your document' },
+        {
+          error:
+            'ドキュメントのアップロードに問題が発生しました。この問題が続く場合は、管理者にご連絡ください。',
+        },
         { status: 500 }
       );
     }
@@ -74,7 +77,10 @@ export async function POST(request: Request) {
       stack: error instanceof Error ? error.stack : undefined,
     });
     return NextResponse.json(
-      { error: 'There was an error processing your request.' },
+      {
+        error:
+          'ご依頼の処理中にエラーが発生しました。この問題が続く場合は、管理者にご連絡ください。',
+      },
       {
         status: 500,
       }
