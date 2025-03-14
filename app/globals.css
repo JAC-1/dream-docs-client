@@ -6,6 +6,34 @@ body {
   /* font-family: Inter, Arial, Helvetica, sans-serif; */
 }
 
+.bg-conic-gradient {
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    #ffedd5 0%,
+    #ecfeff 50%,
+    #fff7ed 100%
+  );
+  animation: rotateConic 10s linear infinite;
+}
+@keyframes rotateConic {
+  from {
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      #ffedd5 0%,
+      #ecfeff 50%,
+      #fff7ed 100%
+    );
+  }
+  to {
+    background: conic-gradient(
+      from 360deg at 50% 50%,
+      #ffedd5 0%,
+      #ecfeff 50%,
+      #fff7ed 100%
+    );
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -10,11 +10,8 @@ export default function Footer() {
 
   if (pathname == '/' || pathname == '/signin' || pathname == '/signup') {
     return (
-      <footer
-        className="bottom-0 w-full bg-white/30 backdrop-blur-sm border-t border-gray-200/20 py-5"
-        z-10
-      >
-        <p className="text-xs text-gray-500 text-center w-full">
+      <footer className=" fixed w-full bg-transparent  py-5 bottom-0">
+        <p className="text-xs text-gray-900 text-right px-20">
           &copy; {new Date().getFullYear()}　英語国際
         </p>
       </footer>
@@ -23,19 +20,16 @@ export default function Footer() {
 
   if (pathname == '/info') {
     return (
-      <footer
-        className="bottom-0 w-full bg-white/30 backdrop-blur-sm border-t border-gray-200/20 py-5"
-        z-10
-      >
-        <p className="text-xs text-gray-500 text-center w-full">
+      <footer className="bottom-0 w-full bg-transparent border-t border-gray-200 py-5 mt-auto">
+        <p className="text-xs text-gray-900 text-center w-full">
           {/* &copy; {new Date().getFullYear()}　英語国際 */}
         </p>
       </footer>
     );
   }
   return (
-    <div className=" fixed bottom-0 w-full p-2 md:bottom-4 md:px-4" z-10>
-      <div className="container ml-4  md:ml-auto">
+    <div className="fixed bottom-0 w-full p-2 md:bottom-4 md:px-4 bg-transparent">
+      <div className="container ml-4 md:ml-auto">
         <Link href="/" className="">
           <p
             className="text-md underline hover:text-slate-400 transition duration-300 md:"
@@ -45,7 +39,7 @@ export default function Footer() {
           </p>
         </Link>
       </div>
-      <p className="text-xs text-gray-500 text-center w-full">
+      <p className="text-xs text-gray-900 text-center w-full">
         &copy; {new Date().getFullYear()} 英語国際
       </p>
     </div>

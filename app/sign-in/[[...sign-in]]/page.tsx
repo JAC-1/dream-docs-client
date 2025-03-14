@@ -96,7 +96,7 @@ export default function SignIn() {
   if (verifying) {
     return (
       <div className="container flex h-screen w-screen flex-col items-center justify-center">
-        <Card className="w-full max-w-sm border-none shadow-none">
+        <Card className="w-full bg-transparent max-w-sm backdrop-blur-sm">
           <CardHeader>
             <AnimatedText
               text="メールコードご確認"
@@ -118,6 +118,7 @@ export default function SignIn() {
                   name="code"
                   onChange={(e) => setCode(e.target.value)}
                   disabled={isSubmitting}
+                  className="backdrop-blur-md"
                 />
               </div>
               {errors && errors.length > 0 && (
@@ -144,7 +145,7 @@ export default function SignIn() {
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
-      <Card className="w-full max-w-sm border-none shadow-none">
+      <Card className="w-full bg-transparent backdrop-blur-sm max-w-sm ">
         <CardHeader>
           <AnimatedText
             text="サインイン"
@@ -167,7 +168,7 @@ export default function SignIn() {
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isSubmitting}
-                className="animate-fadeIn opacity-0"
+                className="animate-fadeIn opacity-0 backdrop-blur-md border-gray-300"
               />
             </div>
             {errors && errors.length > 0 && (

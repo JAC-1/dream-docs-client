@@ -49,9 +49,9 @@ export default function TaskButton({
   const { color, bgColor, icon: StatusIcon } = statusConfig[taskStatus];
 
   const defaultStyle =
-    'block w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out';
+    'backdrop-blur-md bg-white/90 block w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out';
   const disabledStyle =
-    'block w-full bg-gray-50 px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg text-gray-400 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out cursor-not-allowed';
+    'block w-full  backdrop-blur-md px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-lg text-gray-400 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-50 transition-colors duration-200 ease-in-out cursor-not-allowed';
 
   return (
     <div

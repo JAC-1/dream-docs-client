@@ -24,14 +24,18 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${inter.className} min-h-screen h-screen flex flex-col w-screen`}
+          className={`${inter.className}  h-screen flex flex-col w-screen bg-gray-50 `}
+          style={{ backgroundImage: 'url(grain.png)' }}
         >
-          <Header />
-          <main className="w-full max-w-xl  flex flex-col items-center self-center justify-center">
+          <main className="w-full max-w-xl  flex flex-col items-center self-center justify-center flex-grow">
+            {/* <div
+              className={`inset-0 absolute -z-20  bg-gray-100  pointer-events-none`}
+            ></div> */}
+            <Header />
             {children}
           </main>
-          <Footer />
           <SpeedInsights />
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

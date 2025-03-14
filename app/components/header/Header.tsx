@@ -19,7 +19,7 @@ import { ChangeThemeButton } from './ChangeThemeButton';
 export default function Component() {
   return (
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-6xl">
-      <div className="bg-background/40 backdrop-blur-sm border border-border/50 rounded-xl px-6 py-2 shadow-sm">
+      <div className=" backdrop-blur-sm border border-gray-800/10 rounded-xl px-6 py-2 shadow-sm">
         <div className="flex items-center justify-between">
           <AnimatedTitle />
           <nav className="flex items-center space-x-4">
