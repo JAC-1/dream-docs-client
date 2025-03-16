@@ -3,6 +3,7 @@ import './globals.css';
 import { ClerkProvider, SignedIn } from '@clerk/nextjs';
 import { Inter } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Blobs from '@/app/components/Blobs';
 
 import Header from '@/app/components/header/Header';
 import Footer from './components/footer/Footer';
@@ -27,10 +28,8 @@ export default function RootLayout({
           className={`${inter.className}  h-screen flex flex-col w-screen bg-gray-50 `}
           style={{ backgroundImage: 'url(grain.png)' }}
         >
+          <Blobs />
           <main className="w-full max-w-xl  flex flex-col items-center self-center justify-center flex-grow">
-            {/* <div
-              className={`inset-0 absolute -z-20  bg-gray-100  pointer-events-none`}
-            ></div> */}
             <Header />
             {children}
           </main>

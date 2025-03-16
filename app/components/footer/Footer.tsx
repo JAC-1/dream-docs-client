@@ -10,8 +10,8 @@ export default function Footer() {
 
   if (pathname == '/' || pathname == '/signin' || pathname == '/signup') {
     return (
-      <footer className=" fixed w-full bg-transparent  py-5 bottom-0">
-        <p className="text-xs text-gray-900 text-right px-20">
+      <footer className="  w-full bg-transparent  py-5 bottom-0">
+        <p className="text-xs text-gray-900 text-center px-20">
           &copy; {new Date().getFullYear()}　英語国際
         </p>
       </footer>
@@ -32,7 +32,7 @@ export default function Footer() {
       <div className="container ml-4 md:ml-auto">
         <Link href="/" className="">
           <p
-            className="text-md underline hover:text-slate-400 transition duration-300 md:"
+            className="text-md underline hover:text-slate-400 transition duration-300 "
             onClick={() => router.back()}
           >
             <ArrowLeft size={30} />

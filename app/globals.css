@@ -6,31 +6,39 @@ body {
   /* font-family: Inter, Arial, Helvetica, sans-serif; */
 }
 
-.bg-conic-gradient {
-  background: conic-gradient(
-    from 0deg at 50% 50%,
-    #ffedd5 0%,
-    #ecfeff 50%,
-    #fff7ed 100%
-  );
-  animation: rotateConic 10s linear infinite;
-}
-@keyframes rotateConic {
-  from {
-    background: conic-gradient(
-      from 0deg at 50% 50%,
-      #ffedd5 0%,
-      #ecfeff 50%,
-      #fff7ed 100%
-    );
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
   }
-  to {
-    background: conic-gradient(
-      from 360deg at 50% 50%,
-      #ffedd5 0%,
-      #ecfeff 50%,
-      #fff7ed 100%
-    );
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
   }
 }
 
@@ -80,6 +88,17 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    /* Blob Colors */
+    --color-bg1: rgb(108, 0, 162);
+    --color-bg2: rgb(0, 17, 82);
+    --color1: 18, 113, 255;
+    --color2: 221, 74, 255;
+    --color3: 100, 220, 255;
+    --color4: 200, 50, 50;
+    --color5: 180, 180, 50;
+    --color-interactive: 140, 100, 255;
+    --circle-size: 80%;
+    --blending: hard-light;
   }
   .dark {
     --task-complete: 120, 50%, 75%;
@@ -120,4 +139,25 @@ body {
   body {
     @apply text-foreground;
   }
+}
+
+.g1 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(var(--color1), 0.8) 0,
+      rgba(var(--color1), 0) 50%
+    )
+    no-repeat;
+  mix-blend-mode: var(--blending);
+
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+
+  transform-origin: center center;
+  animation: moveVertical 30s ease infinite;
+
+  opacity: 1;
 }
