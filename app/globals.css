@@ -6,6 +6,14 @@ body {
   /* font-family: Inter, Arial, Helvetica, sans-serif; */
 }
 
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+*::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 .bg-conic-gradient {
   background: conic-gradient(
     from 0deg at 50% 50%,
