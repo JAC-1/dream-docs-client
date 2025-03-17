@@ -1,57 +1,69 @@
 export default function (code: string): string {
-  console.log(code);
   switch (code) {
     // Start of form specific errors
     case 'form_param_nil':
-      return 'メールアドレスをご記入してください';
-    case 'form_param_nil':
-      return 'メールアドレスをご記入してください';
+      return 'メールアドレスをご記入ください';
     case 'form_identifier_not_found':
-      return 'メールアドレスは登録されていません';
+      // Avoid revealing whether the email exists
+      return '認証に失敗しました';
     case 'verification_expired':
-      return 'コードの有効期限がきりました';
+      return 'コードの有効期限が切れています';
     // End of form specific errors
     case 'clerk_key_invalid_code':
-      return '提供されたClerkシークレットキーが無効です。Clerkシークレットキーが正しいことを確認してください。';
+      // Do not reveal internal key details
+      return '内部エラーが発生しました';
     case 'authentication_invalid_code':
-      return '無効な認証';
+      return '認証に失敗しました';
     case 'authorization_header_format_invalid_code':
-      return '認証ヘッダーの形式が無効です。';
+      return '認証に失敗しました';
     case 'authorization_invalid_code':
-      return 'このリクエストを実行する権限がありません';
+      return '権限がありません';
     case 'invalid_csrf_token_code':
-      return '無効または不足しているCSRFトークン';
+      return '不正なリクエストです';
     case 'request_header_missing_code':
-      return '無効なリクエストヘッダー';
+      return '不正なリクエストです';
     case 'origin_invalid_code':
-      return '無効なHTTPオリジンヘッダー';
+      return '不正なリクエストです';
     case 'dev_browser_unauthenticated_code':
-      return 'ブラウザが認証されていません';
+      return '認証に失敗しました';
     case 'url_based_session_syncing_disabled_code':
-      return 'このインスタンスではURLベースのセッション同期が無効になっています';
+      return '内部エラーが発生しました';
     case 'request_invalid_for_environment_code':
-      return '環境に対して無効なリクエスト';
+      return '不正なリクエストです';
     case 'request_invalid_for_instance_code':
-      return 'インスタンスに対して無効なリクエスト';
+      return '不正なリクエストです';
     case 'host_invalid_code':
-      return '無効なホスト';
+      return '不正なリクエストです';
     case 'external_account_exists_code':
-      return 'すでに存在します';
     case 'email_address_exists_code':
-      return 'すでに存在します';
     case 'phone_number_exists_code':
-      return 'すでに存在します';
     case 'username_exists_code':
-      return 'すでに存在します';
+      // Use a generic message to prevent user enumeration
+      return '認証に失敗しました';
     case 'identifier_not_allowed_access_code':
-      return 'アクセスが許可されていません。';
+      return 'アクセスが許可されていません';
     case 'signed_out_code':
       return 'サインアウトしました';
     case 'invalid_user_settings_code':
-      return '無効な認証設定';
+      return '内部エラーが発生しました';
     case 'invalid_handshake_code':
-      return '無効なハンドシェイク';
+      return '内部エラーが発生しました';
+    // Additional Clerk error codes identified from recent docs
+    case 'oauth_invalid_state_code':
+    case 'oauth_verification_failed_code':
+      return '認証に失敗しました';
+    case 'invalid_activation_token_code':
+      return '内部エラーが発生しました';
+    case 'session_expired_code':
+      return 'セッションの有効期限が切れています';
+    case 'rate_limit_exceeded_code':
+      return 'リクエストが多すぎます。後ほど再試行してください';
+    case 'user_not_found_code':
+      return '認証に失敗しました';
+    case 'user_already_verified_code':
+      return '認証に失敗しました';
     default:
       return '不明なエラーが発生しました';
   }
 }
+

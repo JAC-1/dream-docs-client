@@ -28,7 +28,6 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       className={`relative animate-fadeInUp opacity-0 `}
       style={{ animationDelay: `${delay}s` }}
     >
-      {/*TODO: Actually disable the button if disabled*/}
 
       <Link
         className={`${buttonVariants({ variant: buttonVariant })} w-full py-6 ${

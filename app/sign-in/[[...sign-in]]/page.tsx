@@ -10,7 +10,6 @@ import {
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Card,
   CardHeader,
@@ -22,9 +21,10 @@ import { Loader2 } from 'lucide-react';
 import { isClerkAPIResponseError } from '@clerk/nextjs/errors';
 import AnimatedText from '@/app/components/AnimatedTextTailwind';
 import clerk_japanese_errors from '@/utils/clerk_japanese_errors';
+import { IBM_Plex_Mono } from 'next/font/google';
 
+const plex = IBM_Plex_Mono({ subsets: ['latin-ext'], weight: '400' });
 export default function SignIn() {
-  // TODO: Are errors exposing?
   const { isLoaded, signIn, setActive } = useSignIn();
   const [verifying, setVerifying] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -118,7 +118,7 @@ export default function SignIn() {
                   name="code"
                   onChange={(e) => setCode(e.target.value)}
                   disabled={isSubmitting}
-                  className="backdrop-blur-md"
+                  className={`${plex.className} backdrop-blur-md`}
                 />
               </div>
               {errors && errors.length > 0 && (
@@ -168,7 +168,7 @@ export default function SignIn() {
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isSubmitting}
-                className="animate-fadeIn opacity-0 backdrop-blur-md border-gray-300"
+                className={`${plex.className} animate-fadeIn opacity-0 backdrop-blur-md border-gray-300`}
               />
             </div>
             {errors && errors.length > 0 && (

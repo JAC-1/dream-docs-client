@@ -9,6 +9,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+        kosugi: ['var(--font-kosugi-maru)'],
+        noto: ['var(--font-noto-sans-jp)'],
+      },
+      fontWeight: {
+        normal: '400',
+      },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0', transform: '' },

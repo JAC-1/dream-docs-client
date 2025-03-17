@@ -15,11 +15,16 @@ import {
 import { User } from 'lucide-react';
 import AnimatedTitle from '@/app/components/header/AnimatedTitle';
 import { ChangeThemeButton } from './ChangeThemeButton';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export default function Component() {
   return (
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-6xl">
-      <div className=" backdrop-blur-sm border border-gray-800/10 rounded-xl px-6 py-2 shadow-sm">
+      <div
+        className={`${inter.className} backdrop-blur-sm border border-gray-800/10 rounded-xl px-6 py-2 shadow-sm`}
+      >
         <div className="flex items-center justify-between">
           <AnimatedTitle />
           <nav className="flex items-center space-x-4">

@@ -21,12 +21,12 @@ const LoggedInView = async () => {
   const getTaskStatus = (taskType: string) => tasksMap[taskType] || 'new';
 
   return (
-    <div className="text-center w-full container mt-24">
+    <div className="text-center w-full container mt-24 mb-8">
       <AnimatedText
         text="提出リスト"
         element="h1"
         delay={0.2}
-        className="md:text-6xl text-3xl p-5"
+        className="md:text-6xl text-4xl p-5 font-kosugi font-semibold"
       />
       <div className="space-y-4 flex flex-col items-center overflow-y-scroll">
         <TaskButton

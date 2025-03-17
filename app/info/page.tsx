@@ -42,7 +42,7 @@ export default function Info() {
   const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
 
   return (
-    <div className="min-h-screen dark:from-slate-950 dark:to-slate-900 p-6 md:p-10">
+    <div className="min-h-screen self-center dark:from-slate-950 dark:to-slate-900 p-6 md:p-10 mt-8">
       <Card className="max-w-2xl mx-auto shadow-lg border-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur my-8">
         <CardHeader className="text-center pb-6 pt-8">
           <motion.div
