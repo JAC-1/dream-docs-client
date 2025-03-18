@@ -9,6 +9,9 @@ import { SecureUploadProps } from '@/interfaces/secure-upload';
 import AnimatedButton from '../AnimatedButton';
 import { useAuth } from '@clerk/nextjs';
 import { TablesInsert } from '@/database.types';
+import { IBM_Plex_Mono } from 'next/font/google';
+
+const mono = IBM_Plex_Mono({ weight: '400', subsets: ['latin-ext'] });
 
 export default function CryptoClient({
   title,
@@ -16,6 +19,7 @@ export default function CryptoClient({
   description,
   downloadUrl,
   task_aproved,
+  count = null,
 }: SecureUploadProps) {
   const initiateUpload = () => {
     if (!uploadFileRef.current) return;
@@ -145,13 +149,26 @@ export default function CryptoClient({
   return (
     <div className="h-auto mt-28">
       <div className="p-5 m-3 border-none shadow-none">
-        <div className="py-5">
-          <AnimatedTextTailwind
-            text={title}
-            element="h1"
-            className="text-3xl"
-            delay={0}
-          />
+        <div className="py-5 grid grid-cols-3 grid-rows-1 gap-3 w-full content-baseline">
+          <div className="col-span-2 ">
+            <AnimatedTextTailwind
+              text={title}
+              element="h1"
+              className="text-3xl"
+              delay={0}
+            />
+          </div>
+          {count && (
+            <p className="text-right mx-1 my-1 w-20 h-5 self-end justify-self-end ">
+              現在:
+              <span
+                className={`pr-1 text-md ${mono.className} ${count < 2 ? 'text-red-500' : 'text-green-500'}`}
+              >
+                {count}
+              </span>
+              枚
+            </p>
+          )}
         </div>
         <div>
           {description.map((text, index) => (

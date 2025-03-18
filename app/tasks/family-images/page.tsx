@@ -1,13 +1,17 @@
 import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 import getFileCache from '@/app/components/hompage/getFileCache';
 import { TASK_TYPES } from '@/constants/taskTypes';
+import getPictureCount from '@/utils/getPictureCount';
 
 const FamilyImages: React.FC = async () => {
   const tasksMap = await getFileCache();
   const taskStatus = (taskType: string) => tasksMap[taskType];
+  const imageCount = await getPictureCount();
+  console.log(imageCount);
 
   return (
     <SubmissionPage
+      count={imageCount}
       title="家族写真"
       task_label="Family_Images"
       description={[

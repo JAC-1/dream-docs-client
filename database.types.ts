@@ -120,7 +120,7 @@ export type Database = {
           status: string
         }
         Insert: {
-          created_at?: string
+          created_at: string
           document_id: string
           encrypted_key: string
           expires_at?: string | null
@@ -157,7 +157,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          created_at?: string
+          created_at: string
           description?: string | null
           duration: string
           end_date: string
@@ -166,7 +166,7 @@ export type Database = {
           name: string
           start_date: string
           status?: string
-          updated_at?: string
+          updated_at: string
         }
         Update: {
           created_at?: string
@@ -193,11 +193,11 @@ export type Database = {
           login_count: number | null
           program: string
           status: string
-          updated_at: number | null
+          updated_at: string | null
         }
         Insert: {
           class: string
-          created_at?: string
+          created_at: string
           display_id: string
           display_name: string
           id?: string
@@ -205,7 +205,7 @@ export type Database = {
           login_count?: number | null
           program: string
           status?: string
-          updated_at?: number | null
+          updated_at?: string | null
         }
         Update: {
           class?: string
@@ -217,18 +217,18 @@ export type Database = {
           login_count?: number | null
           program?: string
           status?: string
-          updated_at?: number | null
+          updated_at?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "students_table_class_classes_table_id_fk"
+            foreignKeyName: "students_class_fkey"
             columns: ["class"]
             isOneToOne: false
             referencedRelation: "classes"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "students_table_program_programs_table_id_fk"
+            foreignKeyName: "students_program_fkey"
             columns: ["program"]
             isOneToOne: false
             referencedRelation: "programs"
@@ -241,12 +241,19 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      diesel_manage_updated_at: {
+        Args: {
+          _tbl: unknown
+        }
+        Returns: undefined
+      }
       insert_document_with_keys: {
         Args: {
           document_id: string
           file_name: string
           mime_type: string
           file_size: number
+          file_path: string
           user_id: string
           created_at: string
           key_id: string

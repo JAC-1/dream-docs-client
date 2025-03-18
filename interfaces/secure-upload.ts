@@ -5,4 +5,5 @@ export interface SecureUploadProps {
   downloadUrl?: string;
   additionalMetadata?: Record<string, any>;
   task_aproved: boolean;
+  count: number | null;
 }

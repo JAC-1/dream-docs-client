@@ -37,3 +37,19 @@ export const insertDocumentKey = async (
     throw error;
   }
 };
+
+export const getPictureCount = async (userId: string) => {
+  // Uses the postgres function count_pictures to count how many family pictures a client has uploaded
+  try {
+    const { count, error } = await supabase.from('file_keys').select('*');
+    // .eq('user_id', userId);
+    // .eq('task_type', 'Family_Images');
+    if (error) {
+      throw error;
+    }
+    return count;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
