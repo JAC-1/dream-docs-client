@@ -1,12 +1,12 @@
-import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 import getFileCache from '@/app/components/hompage/getFileCache';
 import { TASK_TYPES } from '@/constants/taskTypes';
+import CryptoClient from '@/app/components/submissionPage/CryptoClient';
 
 const PassportCopy: React.FC = async () => {
   const tasksMap = await getFileCache();
   const taskStatus = (taskType: string) => tasksMap[taskType];
   return (
-    <SubmissionPage
+    <CryptoClient
       title="パスポートのカラーコピー"
       task_label="Passport"
       description={[
@@ -16,6 +16,7 @@ const PassportCopy: React.FC = async () => {
       task_aproved={
         taskStatus(TASK_TYPES.PASSPORT) === 'approved' ? true : false
       }
+      count={null}
     />
   );
 };

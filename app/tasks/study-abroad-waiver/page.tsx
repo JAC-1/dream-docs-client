@@ -1,14 +1,12 @@
-import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 import getFileCache from '@/app/components/hompage/getFileCache';
 import { TASK_TYPES } from '@/constants/taskTypes';
+import CryptoClient from '@/app/components/submissionPage/CryptoClient';
 
 const StudyAbroadAgreementContentPage: React.FC = async () => {
   const tasksMap = await getFileCache();
   const taskStatus = (taskType: string) => tasksMap[taskType];
-  console.log(tasksMap['Study_Abroad_Agreement']);
-  console.log(tasksMap[TASK_TYPES.STUDY_ABROAD_AGREEMENT]);
   return (
-    <SubmissionPage
+    <CryptoClient
       title="留学同意書"
       task_label="Study_Abroad_Agreement"
       description={[
@@ -21,6 +19,7 @@ const StudyAbroadAgreementContentPage: React.FC = async () => {
           ? true
           : false
       }
+      count={null}
     />
   );
 };

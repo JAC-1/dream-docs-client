@@ -1,12 +1,12 @@
-import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 import getFileCache from '@/app/components/hompage/getFileCache';
 import { TASK_TYPES } from '@/constants/taskTypes';
+import CryptoClient from '@/app/components/submissionPage/CryptoClient';
 
 const PersonalInformationWaiver: React.FC = async () => {
   const tasksMap = await getFileCache();
   const taskStatus = (taskType: string) => tasksMap[taskType];
   return (
-    <SubmissionPage
+    <CryptoClient
       title="個人情報同意書"
       task_label="Personal_Information_Waiver"
       description={[
@@ -19,6 +19,7 @@ const PersonalInformationWaiver: React.FC = async () => {
           ? true
           : false
       }
+      count={null}
     />
   );
 };
