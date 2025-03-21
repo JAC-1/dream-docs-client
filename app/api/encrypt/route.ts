@@ -21,12 +21,10 @@ export async function POST(request: Request) {
       });
     }
 
-    const encryptedSymmetricKey = await encryptWithPublic(documentKey);
-
     const keyPayload: TablesInsert<'file_keys'> = {
       id: uuidv4(),
       document_id: documentCache.document_id!,
-      encrypted_key: encryptedSymmetricKey,
+      encrypted_key: documentKey,
       status: 'active',
       created_at: new Date().toISOString(),
     };

@@ -1,17 +1,15 @@
-import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 import getFileCache from '@/app/components/hompage/getFileCache';
 import { TASK_TYPES } from '@/constants/taskTypes';
 import getPictureCount from '@/utils/getPictureCount';
+import CryptoClient from '@/app/components/submissionPage/CryptoClient';
 
 const FamilyImages: React.FC = async () => {
   const tasksMap = await getFileCache();
   const taskStatus = (taskType: string) => tasksMap[taskType];
   const imageCount = await getPictureCount();
-  console.log(imageCount);
 
   return (
-    <SubmissionPage
-      count={imageCount}
+    <CryptoClient
       title="家族写真"
       task_label="Family_Images"
       description={[
@@ -21,6 +19,7 @@ const FamilyImages: React.FC = async () => {
       task_aproved={
         taskStatus(TASK_TYPES.FAMILY_IMAGES) === 'approved' ? true : false
       }
+      count={imageCount}
     />
   );
 };

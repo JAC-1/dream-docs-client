@@ -1,12 +1,12 @@
-import SubmissionPage from '@/app/components/submissionPage/SubmissionPage';
 import getFileCache from '@/app/components/hompage/getFileCache';
 import { TASK_TYPES } from '@/constants/taskTypes';
+import CryptoClient from '@/app/components/submissionPage/CryptoClient';
 
 const WhyStudyInCanada: React.FC = async () => {
   const tasksMap = await getFileCache();
   const taskStatus = (taskType: string) => tasksMap[taskType];
   return (
-    <SubmissionPage
+    <CryptoClient
       title="志願理由書"
       task_label="Why_Study_In_Canada"
       description={[
@@ -16,6 +16,7 @@ const WhyStudyInCanada: React.FC = async () => {
       task_aproved={
         taskStatus(TASK_TYPES.WHY_STUDY_IN_CANADA) === 'approved' ? true : false
       }
+      count={null}
     />
   );
 };

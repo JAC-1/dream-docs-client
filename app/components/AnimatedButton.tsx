@@ -28,14 +28,12 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       className={`relative animate-fadeInUp opacity-0 `}
       style={{ animationDelay: `${delay}s` }}
     >
-
       <Link
         className={`${buttonVariants({ variant: buttonVariant })} w-full py-6 ${
           disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
         } `}
         href={href}
         aria-label={ariaLabel}
-        aready-disabled={disabled}
         tabIndex={disabled ? -1 : 0}
         onClick={onClick}
       >
