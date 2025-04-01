@@ -20,6 +20,7 @@ const StudyAbroadAgreementContentPage: React.FC = async () => {
           : false
       }
       count={null}
+      downloadUrl="/downloads/留学同意書.pdf"
     />
   );
 };
