@@ -20,6 +20,7 @@ const PersonalInformationWaiver: React.FC = async () => {
           : false
       }
       count={null}
+      downloadUrl="/downloads/個人情報同意書.pdf"
     />
   );
 };

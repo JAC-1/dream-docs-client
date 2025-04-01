@@ -13,7 +13,9 @@ import { encryptFile } from '@/utils/crypto';
 import { encryptSymmetricKey } from '@/utils/crypto';
 import { fetchServerPublicKey } from '@/utils/crypto/';
 import { arrayBufferToBase64 } from '@/utils/crypto';
+import { IBM_Plex_Mono } from 'next/font/google';
 
+const mono = IBM_Plex_Mono({ weight: '400', subsets: ['latin-ext'] });
 export default function CryptoClient({
   title,
   task_label,
@@ -160,13 +162,26 @@ export default function CryptoClient({
   return (
     <div className="h-auto mt-28">
       <div className="p-5 m-3 border-none shadow-none">
-        <div className="py-5">
-          <AnimatedTextTailwind
-            text={title}
-            element="h1"
-            className="text-3xl"
-            delay={0}
-          />
+        <div className="py-5 grid grid-cols-3 grid-rows-1 gap-3 w-full content-baseline">
+          <div className="col-span-2 ">
+            <AnimatedTextTailwind
+              text={title}
+              element="h1"
+              className="text-3xl"
+              delay={0}
+            />
+          </div>
+          {count && (
+            <p className="text-right mx-1 my-1 w-20 h-5 self-end justify-self-end ">
+              現在:
+              <span
+                className={`pr-1 text-md ${mono.className} ${count < 3 ? 'text-red-500' : 'text-green-500'}`}
+              >
+                {count}
+              </span>
+              枚
+            </p>
+          )}
         </div>
         <div>
           {description.map((text, index) => (
@@ -197,7 +212,7 @@ export default function CryptoClient({
                     ariaLabel="Download Document"
                     delay={1.5}
                     buttonVariant="ghost"
-                    text=""
+                    text="ダウンロード"
                   />
                 </div>
               )}

@@ -14,6 +14,7 @@ const HeadShot: React.FC = async () => {
         taskStatus(TASK_TYPES.HEADSHOT) === 'approved' ? true : false
       }
       count={null}
+      downloadUrl="/downloads/ホストファミリーへの手紙（記入例）.pdf"
     />
   );
 };

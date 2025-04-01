@@ -17,6 +17,7 @@ const HomeStayLetter: React.FC = async () => {
         taskStatus(TASK_TYPES.HOMESTAY_LETTER) === 'approved' ? true : false
       }
       count={null}
+      downloadUrl="/downloads/ホストファミリーへの手紙（記入例）.pdf"
     />
   );
 };

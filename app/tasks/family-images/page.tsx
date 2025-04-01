@@ -19,7 +19,7 @@ const FamilyImages: React.FC = async () => {
       task_aproved={
         taskStatus(TASK_TYPES.FAMILY_IMAGES) === 'approved' ? true : false
       }
-      count={imageCount}
+      count={imageCount == 0 ? null : imageCount}
     />
   );
 };

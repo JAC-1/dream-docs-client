@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const AnimatedTitle = () => {
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -17,12 +18,12 @@ const AnimatedTitle = () => {
       {
         opacity: 1,
         y: 0,
-        duration: 0.5,
+        duration: 0.25,
         stagger: 0.1,
         ease: 'power3.out',
-        // yoyo: true,
-        // repeat: -1,
-        // repeatDelay: 1
+        yoyo: true,
+        repeat: -1,
+        repeatDelay: 3,
       }
     );
   }, []);
@@ -38,6 +39,12 @@ const AnimatedTitle = () => {
       onClick={handleClick}
       className="bg-transparent flex items-center space-x-2"
     >
+      <Image
+        src={'/DD-Panda.png'}
+        alt="An image of a cute dreaming panada"
+        width={50}
+        height={50}
+      />
       <div className="text-md md:text-xl font-bold flex ">
         {title_split.map((letter, index) => (
           <span

@@ -25,6 +25,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head>
+          <link rel="icon" href="DD-Panda-32x32.png" />
+        </head>
         <body
           className={`${kosugi.className}  h-screen flex flex-col w-screen bg-gray-50`}
           style={{ backgroundImage: 'url(grain.png)' }}
