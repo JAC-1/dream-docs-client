@@ -41,6 +41,7 @@ export default function CryptoClient({
   const [success, setSuccess] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
+  const [fileExtension, setFileExtension] = useState<string | null>(null);
 
   const { userId } = useAuth();
 
@@ -233,12 +234,13 @@ export default function CryptoClient({
                     isProcessing
                       ? '修理中'
                       : (fileDetails?.file_name &&
-                          `${fileDetails?.file_name}を選択しています`) ||
+                          `${fileDetails?.file_name.slice(0, 10)}...(.${fileDetails?.file_name.split('.').pop()})を選択しています`) ||
                         'ファイルを選択'
                   }
                   ariaLabel="Upload File"
                   onClick={initiateUpload}
                   buttonVariant="outline"
+                  font={mono}
                 />
               </div>
               <div className="col-span-3 row-span-2">

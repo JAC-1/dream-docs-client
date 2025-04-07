@@ -11,6 +11,7 @@ interface AnimatedButtonProps {
   buttonVariant?: 'default' | 'outline' | 'secondary' | 'ghost' | 'link';
   onClick?: () => void;
   disabled?: boolean;
+  font?: null | any;
 }
 
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({
@@ -22,6 +23,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   buttonVariant = 'default',
   onClick,
   disabled,
+  font = null,
 }) => {
   return (
     <div
@@ -38,10 +40,9 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
         onClick={onClick}
       >
         {Icon ? <Icon className="w-5 h-5 mr-1" /> : null}
-        <span className="text-sm">{text}</span>
+        <span className={`text-sm ${font && font.className}`}>{text}</span>
       </Link>
     </div>
   );
 };
-
 export default AnimatedButton;

@@ -2,7 +2,7 @@
 
 import { SignedIn, SignedOut, SignOutButton } from '@clerk/nextjs';
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { User } from 'lucide-react';
 import AnimatedTitle from '@/app/components/header/AnimatedTitle';
-import { ChangeThemeButton } from './ChangeThemeButton';
+// import { ChangeThemeButton } from './ChangeThemeButton';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
