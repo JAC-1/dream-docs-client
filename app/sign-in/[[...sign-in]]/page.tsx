@@ -19,7 +19,100 @@ import clerk_japanese_errors from '@/utils/clerk_japanese_errors';
 import { IBM_Plex_Mono } from 'next/font/google';
 
 const plex = IBM_Plex_Mono({ subsets: ['latin-ext'], weight: '400' });
-export default function SignIn() {
+
+const isPreview = process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true';
+
+// Rendered in preview mode — no Clerk hooks, just the static UI
+function SignInPreview() {
+  const [verifying, setVerifying] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [code, setCode] = React.useState('');
+
+  if (verifying) {
+    return (
+      <div className="container flex h-screen w-screen flex-col items-center justify-center">
+        <Card className="w-full bg-transparent max-w-sm backdrop-blur-sm">
+          <CardHeader>
+            <AnimatedText
+              text="メールコードご確認"
+              className="font-serif md:text-4xl  text-3xl font-bold text-center"
+              delay={0.3}
+            />
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <div className="space-y-2">
+                <AnimatedText
+                  text="メールに送信したコードを入力してください"
+                  className="text-sm font-bold"
+                  delay={0.6}
+                />
+                <Input
+                  value={code}
+                  id="code"
+                  name="code"
+                  onChange={(e) => setCode(e.target.value)}
+                  className={`${plex.className} backdrop-blur-md`}
+                />
+              </div>
+              <Button type="submit" className="w-full">
+                確認
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+      <Card className="w-full bg-transparent backdrop-blur-sm max-w-sm ">
+        <CardHeader>
+          <AnimatedText
+            text="サインイン"
+            className="text-3xl md:text-4xl font-bold text-center font-serif"
+            delay={0.5}
+          />
+        </CardHeader>
+        <CardContent>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setVerifying(true);
+            }}
+            className="space-y-4"
+          >
+            <div className="space-y-2">
+              <AnimatedText
+                text="メールアドレスを入力してください。"
+                className=" text-sm font-bold"
+                delay={0.7}
+              />
+              <Input
+                value={email}
+                id="email"
+                name="email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                className={`${plex.className} animate-fadeIn opacity-0 backdrop-blur-md border-gray-300`}
+              />
+            </div>
+            <Button
+              type="submit"
+              className="w-full animate-fadeIn opacity-0 delay-700 duration-700"
+            >
+              続ける
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// Rendered in production — full Clerk sign-in flow
+function SignInReal() {
   const { isLoaded, signIn, setActive } = useSignIn();
   const [verifying, setVerifying] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -190,4 +283,9 @@ export default function SignIn() {
       </Card>
     </div>
   );
+}
+
+export default function SignIn() {
+  if (isPreview) return <SignInPreview />;
+  return <SignInReal />;
 }

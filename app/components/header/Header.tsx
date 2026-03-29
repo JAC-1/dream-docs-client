@@ -16,8 +16,10 @@ import { User } from 'lucide-react';
 import AnimatedTitle from '@/app/components/header/AnimatedTitle';
 // import { ChangeThemeButton } from './ChangeThemeButton';
 import { Inter } from 'next/font/google';
+import PreviewShell from '@/app/components/preview/PreviewShell';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const isPreview = process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true';
 
 export default function Component() {
   return (
@@ -28,61 +30,67 @@ export default function Component() {
         <div className="flex items-center justify-between">
           <AnimatedTitle />
           <nav className="flex items-center space-x-4">
-            <SignedIn>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Avatar className="flex item-center">
-                    <User className="self-center" />
-                  </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>アカウント</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Button
-                      asChild
-                      variant="ghost"
-                      className="w-full justify-start p-0"
-                    >
-                      <Link href="/">提出リスト</Link>
-                    </Button>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Button
-                      asChild
-                      variant="ghost"
-                      className="w-full justify-start p-0"
-                    >
-                      <Link href="/info">内容</Link>
-                    </Button>
-                  </DropdownMenuItem>
-                  {/*Add when contact page is ready*/}
-                  <DropdownMenuItem>
-                    <Button
-                      asChild
-                      variant="ghost"
-                      className="w-full justify-start p-0"
-                    >
-                      <Link
-                        href=""
-                        className="text-gray-300 hover:text-gray-300 pointer-events-none"
-                      >
-                        コンタクト
-                      </Link>
-                    </Button>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <SignOutButton>サインアウト</SignOutButton>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </SignedIn>
-            <SignedOut>
-              <Button asChild variant="ghost">
-                <Link href="/sign-in">サインイン</Link>
-              </Button>
-            </SignedOut>
+            {isPreview ? (
+              <PreviewShell />
+            ) : (
+              <>
+                <SignedIn>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <Avatar className="flex item-center">
+                        <User className="self-center" />
+                      </Avatar>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>アカウント</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>
+                        <Button
+                          asChild
+                          variant="ghost"
+                          className="w-full justify-start p-0"
+                        >
+                          <Link href="/">提出リスト</Link>
+                        </Button>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Button
+                          asChild
+                          variant="ghost"
+                          className="w-full justify-start p-0"
+                        >
+                          <Link href="/info">内容</Link>
+                        </Button>
+                      </DropdownMenuItem>
+                      {/*Add when contact page is ready*/}
+                      <DropdownMenuItem>
+                        <Button
+                          asChild
+                          variant="ghost"
+                          className="w-full justify-start p-0"
+                        >
+                          <Link
+                            href=""
+                            className="text-gray-300 hover:text-gray-300 pointer-events-none"
+                          >
+                            コンタクト
+                          </Link>
+                        </Button>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>
+                        <SignOutButton>サインアウト</SignOutButton>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </SignedIn>
+                <SignedOut>
+                  <Button asChild variant="ghost">
+                    <Link href="/sign-in">サインイン</Link>
+                  </Button>
+                </SignedOut>
+              </>
+            )}
           </nav>
         </div>
       </div>

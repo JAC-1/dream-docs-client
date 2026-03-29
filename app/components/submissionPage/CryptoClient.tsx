@@ -6,7 +6,7 @@ import AnimatedTextTailwind from '../AnimatedTextTailwind';
 import { Download, UploadIcon, File } from 'lucide-react';
 import { SecureUploadProps } from '@/interfaces/secure-upload';
 import AnimatedButton from '../AnimatedButton';
-import { useAuth } from '@clerk/nextjs';
+import { usePreviewAuth } from '@/app/components/preview/PreviewProvider';
 import { TablesInsert } from '@/database.types';
 import { generateSymmetricKey } from '@/utils/crypto_utils';
 import { encryptFile } from '@/utils/crypto';
@@ -43,7 +43,10 @@ export default function CryptoClient({
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
   const [fileExtension, setFileExtension] = useState<string | null>(null);
 
-  const { userId } = useAuth();
+  const { userId } = usePreviewAuth();
+  
+  
+  // No reason to use useCallback as nothing is wrapped in React.memo, such as the <AnimatedButton>
 
   const handleFileChange = useCallback(
     async (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,13 +1,18 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
+
 const isProtectedRoute = createRouteMatcher([
   '/dashboard(.*)',
   '/tasks(.*)',
   '/api(.*)',
 ]);
 
-// Protects the dashboard route
-export default clerkMiddleware((auth, req) => {
+const clerkMw = clerkMiddleware((auth, req) => {
+  // Never redirect in preview mode — sign-in page must be accessible for screenshots
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return NextResponse.next();
+  }
+
   // Redirect if not authed correctly
   const userId = auth().userId;
   const homeURL = new URL('/', req.url);
@@ -15,12 +20,19 @@ export default clerkMiddleware((auth, req) => {
     return NextResponse.redirect(homeURL);
   }
 
-  // If user goes to sign-in page whiled signed in, redirect to dashboard
+  // If user goes to sign-in page while signed in, redirect to dashboard
   const currentURL = new URL(req.url);
   if (userId && currentURL.pathname === '/sign-in') {
     return NextResponse.redirect(homeURL);
   }
 });
+
+export default function middleware(req: NextRequest) {
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return NextResponse.next();
+  }
+  return clerkMw(req);
+}
 
 export const config = {
   matcher: [

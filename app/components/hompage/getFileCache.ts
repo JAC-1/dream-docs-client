@@ -1,7 +1,12 @@
 import { auth } from '@clerk/nextjs/server';
 import supabase from '@/lib/supabase/supabase_annon';
+import { MOCK_TASK_STATUSES } from '@/lib/preview/mock-data';
 
 const getTasks = async () => {
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return MOCK_TASK_STATUSES;
+  }
+
   const { userId } = auth();
   if (!userId) throw 'Possibly Unauthorized';
   try {

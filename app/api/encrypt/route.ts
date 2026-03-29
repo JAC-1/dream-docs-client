@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { encryptWithPublic } from '@/lib/encryptWithPublic';
+// PREVIEW MODE: encryptWithPublic (server-side RSA helper) is not used in the current flow.
+// import { encryptWithPublic } from '@/lib/encryptWithPublic';
 import { EncryptRequest } from '@/interfaces';
 import { v4 as uuidv4 } from 'uuid';
 import { TablesInsert } from '@/database.types';
@@ -10,6 +11,10 @@ import {
 import { uploadDocToTurso } from '@/lib/turso/opperations';
 
 export async function POST(request: Request) {
+  if (process.env.NEXT_PUBLIC_PREVIEW_MODE === 'true') {
+    return NextResponse.json({ status: 200 });
+  }
+
   try {
     const { encryptedFile, documentKey, documentCache }: EncryptRequest =
       await request.json();
